@@ -10,14 +10,19 @@ func main() {
 	fmt.Println("Word Counter Begins...")
 	data, _ := os.ReadFile("./words.txt")
 
+	wordCount := countWords(data)
+	fmt.Println(wordCount)
+}
+
+func countWords(data []byte) int {
 	wordCount := 0
 
-	for _, v := range data {
-		if v == ' ' {
+	for _, x := range data {
+		if x == ' ' {
 			wordCount++
 		}
 	}
 
 	wordCount++
-	fmt.Println(wordCount)
+	return wordCount
 }
