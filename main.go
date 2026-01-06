@@ -15,18 +15,26 @@ func main() {
 }
 
 func CountWords(data []byte) int {
-	//specific edge case - putting guards on top of the function
 	if len(data) == 0 {
 		return 0
 	}
 
+	wordDetected := false
 	wordCount := 0
 
 	for _, x := range data {
 		if x == ' ' {
 			wordCount++
+		} else {
+			wordDetected = true
 		}
 	}
+
+	if !wordDetected {
+		return 0
+	}
+
+	wordCount++
 
 	return wordCount
 }
