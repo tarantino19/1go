@@ -1,3 +1,3 @@
-module github.com/tarantino19/1go
+module github.com/tarantino19/counter
 
 go 1.25.1

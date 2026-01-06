@@ -1,6 +1,10 @@
-package main
+package main_test
 
-import "testing"
+import (
+	"testing"
+
+	counter "github.com/tarantino19/counter"
+)
 
 func TestCountWords(t *testing.T) {
 
@@ -24,12 +28,22 @@ func TestCountWords(t *testing.T) {
 			input: " ",
 			wants: 0,
 		},
+		{
+			name:  "new lines",
+			input: "one two three\nfour five",
+			wants: 5,
+		},
+		{
+			name:  "multiple spaces",
+			input: "This is a sentence.  Then there's double space.   Then triple space not included in our algorithm yet",
+			wants: 17,
+		},
 	}
 
 	for _, tc := range testCases {
 
 		t.Run(tc.name, func(t *testing.T) {
-			result := CountWords([]byte(tc.input))
+			result := counter.CountWords([]byte(tc.input))
 
 			if result != tc.wants {
 				t.Logf("expected: %v, got: %v", tc.wants, result)
