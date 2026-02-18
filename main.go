@@ -8,8 +8,14 @@ import (
 
 func main() {
 
-	fmt.Println("Word Counter Begins...")
-	data, _ := os.ReadFile("./words.txt")
+	fmt.Println("Word Counter Program Begins...")
+
+	data, err := os.ReadFile("./words1.txt")
+
+	if err != nil {
+		fmt.Println("Error reading file:", err)
+		os.Exit(1)
+	}
 
 	wordCount := CountWords(data)
 	fmt.Println(wordCount)
