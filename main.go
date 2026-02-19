@@ -9,7 +9,9 @@ import (
 
 func main() {
 
-	data, err := os.ReadFile("./words.txt")
+	filename := "./big.txt"
+
+	file, err := os.Open(filename)
 
 	log.SetFlags(0)
 
@@ -17,8 +19,24 @@ func main() {
 		log.Fatal("failed to read file:", err)
 	}
 
-	wordCount := CountWords(data)
-	fmt.Println(wordCount)
+	PrintFileContents(file)
+}
+
+func PrintFileContents(file *os.File) {
+	const bufferSize = 4096
+	//find sectorsize
+
+	buffer := make([]byte, bufferSize)
+
+	for {
+		size, err := file.Read(buffer)
+
+		if err != nil {
+			break
+		}
+
+		fmt.Print(string(buffer[:size]))
+	}
 }
 
 func CountWords(data []byte) int {
