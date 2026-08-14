@@ -12,7 +12,7 @@ func main() {
 	filename := "./big.txt"
 
 	file, err := os.Open(filename)
-
+	//hello world
 	log.SetFlags(0)
 
 	if err != nil {
